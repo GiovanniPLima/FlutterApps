@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController qttPessoas = TextEditingController();
   TextEditingController conta = TextEditingController();
-  String _valorPessoa = "Informe seus Dados";
+  String _valorPessoa = "";
   void Calcular() {
     double qtt = double.parse(qttPessoas.text);
     double ct = double.parse(conta.text);
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   void _limparCampos() {
     setState(() {
-      _valorPessoa = "Informe seus Dados";
+      _valorPessoa = "";
       qttPessoas.text = "";
       conta.text = "";
     });
@@ -63,32 +63,43 @@ class _HomePageState extends State<HomePage> {
                   size: 120,
                   color: Colors.green,
                 ),
-                TextFormField(
-                    controller: qttPessoas,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Quantidade de Pessoas",
-                        labelStyle: TextStyle(color: Colors.blue)),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.blue, fontSize: 18),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Preencha Todos os Campos";
-                      }
-                    }),
-                TextFormField(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return " Preencha Todos os Campos";
-                      }
-                    },
-                    controller: conta,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Valor da Conta",
-                        labelStyle: TextStyle(color: Colors.blue)),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.blue, fontSize: 18)),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      child: TextFormField(
+                          controller: qttPessoas,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: "Quantidade de Pessoas",
+                          ),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.blue, fontSize: 18),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Preencha Todos os Campos";
+                            }
+                          })),
+                ),
+                Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(30))),
+                    child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return " Preencha Todos os Campos";
+                          }
+                        },
+                        controller: conta,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Valor da Conta",
+                        ),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.blue, fontSize: 18))),
                 Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 20),
                   child: Container(
